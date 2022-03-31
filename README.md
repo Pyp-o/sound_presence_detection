@@ -9,5 +9,5 @@ Et un Arduino Nano (esclave) se charge des LEDs d'état et du capteur sonore.
 # A faire a l'installation
 * generer une cle ssh, l'ajouter aux acces du depot git
 * configurer un compte ayant les droits pour push dans le depot
-* ajouter au crontab la commande suivante: 
-  - * 22 * * * bash /home/pyp/Documents/presence_detection/gitRepository/sound_presence_detection/logsGitUpdate.sh
+* ajouter au crontab la commande permettant de lancer le script :  logsGitUpdate.sh
+  - exemple : <* 22 * * * bash /home/user1/Documents/sound_presence_detection/logsGitUpdate.sh>
