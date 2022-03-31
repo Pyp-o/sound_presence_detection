@@ -26,4 +26,3 @@ int main(int argc, char *argv[])
     pclose(pipe); /* Close the pipe */
     return 0;     /* return with exit code indicating success. */
 }
-// * * * * * bash /home/pyp/Documents/presence_detection/gitRepository/sound_presence_detection/logsGitUpdate.sh
