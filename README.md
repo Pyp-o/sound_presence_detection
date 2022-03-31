@@ -7,5 +7,7 @@ Le système fonctionne avec une RaspBerry Pi3 (maître) qui est en charge du cap
 Et un Arduino Nano (esclave) se charge des LEDs d'état et du capteur sonore.
 
 # A faire a l'installation
-ajouter au crontab la commande suivante: 
-  * 22 * * * bash /home/pyp/Documents/presence_detection/gitRepository/sound_presence_detection/logsGitUpdate.sh
+* generer une cle ssh, l'ajouter aux acces du depot git
+* configurer un compte ayant les droits pour push dans le depot
+* ajouter au crontab la commande suivante: 
+  - * 22 * * * bash /home/pyp/Documents/presence_detection/gitRepository/sound_presence_detection/logsGitUpdate.sh
