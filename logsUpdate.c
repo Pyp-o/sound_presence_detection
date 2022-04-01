@@ -2,14 +2,14 @@
 
 #define LINE_BUFSIZE 128
 
-int main(int argc, char *argv[])
+int callScript(char scriptName)
 {
     char line[LINE_BUFSIZE];
     int linenr;
     FILE *pipe;
     
     /* Get a pipe where the output from the scripts comes in */
-    pipe = popen("./logsGitUpdate.sh", "r");
+    pipe = popen(scriptName, "r");
     if (pipe == NULL) {  /* check for errors */
         perror(argv[0]); /* report error message */
         return 1;        /* return with exit code indicating error */
