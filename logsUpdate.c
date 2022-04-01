@@ -1,14 +1,14 @@
 #include <stdio.h>
-
 #define LINE_BUFSIZE 128
 
-int callScript(char scriptName)
+int callScript(char *scriptName)
 {
     char line[LINE_BUFSIZE];
     int linenr;
     FILE *pipe;
     
     /* Get a pipe where the output from the scripts comes in */
+    //scriptName !! ./executable
     pipe = popen(scriptName, "r");
     if (pipe == NULL) {  /* check for errors */
         perror(argv[0]); /* report error message */
