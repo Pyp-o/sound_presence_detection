@@ -1,6 +1,6 @@
 //#include "state.h"
 #define SOUND_SENSOR_PIN  5
-#define SOUND_TRESHOLD    242
+#define SOUND_TRESHOLD    240
 #define R1                12
 #define R2                11
 #define J1                10
@@ -82,11 +82,9 @@ void loop() {
     broche = worm(broche);
     if( is_present() ){
       state = WPRESENCE;
-      break;
     }
     else if((analogRead(SOUND_SENSOR_PIN) > SOUND_TRESHOLD) ){
       state = WSOUND; 
-      break;
     }
     break;
   }
