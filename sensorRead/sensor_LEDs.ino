@@ -1,6 +1,6 @@
 //#include "state.h"
 #define SOUND_SENSOR_PIN  5
-#define SOUND_TRESHOLD    245
+#define SOUND_TRESHOLD    235
 #define R1                12
 #define R2                11
 #define J1                10
