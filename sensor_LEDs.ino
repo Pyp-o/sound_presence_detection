@@ -1,6 +1,6 @@
 //#include "state.h"
 #define SOUND_SENSOR_PIN  5
-#define SOUND_TRESHOLD    250
+#define SOUND_TRESHOLD    245
 #define R1                12
 #define R2                11
 #define J1                10
@@ -50,7 +50,7 @@ void loop() {
     unsigned long endtime = millis(); //heure de fin
     unsigned long warningtime = endtime - starttime;  //calcul du temps en alerte
     message(state, warningtime);                      //envoie message
-    if(analogRead(SOUND_SENSOR_PIN) < 250){ 
+    if(analogRead(SOUND_SENSOR_PIN) > SOUND_TRESHOLD){ 
       state = WSOUND;  
     }
     else{
