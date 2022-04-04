@@ -22,10 +22,10 @@ int main()
          serialport_close(fd);
          return -1;}
    
-      if( value == 1){
+      if( value == 0){
          sprintf(buffer,"%d\n",value);
          printf("%s", buffer);
-         serialport_write(fd, buffer);
+         serialport_write(fd, "1");
          usleep(200000);
       }
       
