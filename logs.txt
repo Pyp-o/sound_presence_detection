@@ -105,3 +105,4 @@
 2022-04-04 21:00:01;Warning type: SON ; Warning time: 801 ms.
 2022-04-04 21:00:05;Warning type: SON ; Warning time: 1600 ms.
 2022-04-04 21:00:14;Warning type: SON ; Warning time: 1599 ms.
+2022-04-04 21:00:25;Warning type: SON ; Warning time: 800 ms.
