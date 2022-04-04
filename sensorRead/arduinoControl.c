@@ -12,7 +12,7 @@ int main()
       return -1;
    }
 
-   char buffer[2];
+  //char buffer[2];
 
    while(1){
       int value = readGpio20();
@@ -23,12 +23,12 @@ int main()
          return -1;}
    
       if( value == 0){
-         sprintf(buffer,"%d\n",value);
-         printf("%s", buffer);
+        // sprintf(buffer,"%d\n",value);
+        // printf("%s", buffer);
          serialport_write(fd, "1");
-         usleep(200000);
+         usleep(500000);
       }
-      
+       serialport_flush(fd); 
    }
 
    serialport_flush(fd);

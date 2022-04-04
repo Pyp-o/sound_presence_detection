@@ -1,6 +1,6 @@
 //#include "state.h"
 #define SOUND_SENSOR_PIN  5
-#define SOUND_TRESHOLD    240
+#define SOUND_TRESHOLD    245
 #define R1                12
 #define R2                11
 #define J1                10
@@ -44,13 +44,13 @@ void loop() {
   {
     unsigned long starttime = millis(); //heure de debut
     presence();
-    while( is_present() ){ 
+    while( is_present() ){
       presence();  
     }
     unsigned long endtime = millis(); //heure de fin
     unsigned long warningtime = endtime - starttime;  //calcul du temps en alerte
     message(state, warningtime);                      //envoie message
-    if(analogRead(SOUND_SENSOR_PIN) > SOUND_TRESHOLD){ 
+    if(digitalRead(SOUND_SENSOR_PIN)==0){ 
       state = WSOUND;  
     }
     else{
@@ -63,7 +63,7 @@ void loop() {
   {
     unsigned long starttime = millis();
     sound();
-    while(analogRead(SOUND_SENSOR_PIN) > SOUND_TRESHOLD &&  !is_present()){ // a modifier lorsqu'on aura les données du capteur de presence
+    while(digitalRead(SOUND_SENSOR_PIN)==0 &&  !is_present()){ // a modifier lorsqu'on aura les données du capteur de presence
       sound(); 
     }
     unsigned long endtime = millis();
@@ -83,7 +83,7 @@ void loop() {
     if( is_present() ){
       state = WPRESENCE;
     }
-    else if((analogRead(SOUND_SENSOR_PIN) > SOUND_TRESHOLD) ){
+    else if((digitalRead(SOUND_SENSOR_PIN)==0) ){
       state = WSOUND; 
     }
     break;
@@ -101,7 +101,7 @@ void initSTATE(){
   if( is_present() ){
     state = WPRESENCE;
     }
-  else if( (analogRead(SOUND_SENSOR_PIN) > SOUND_TRESHOLD) ) {
+  else if( (digitalRead(SOUND_SENSOR_PIN)==0) ) {
     state = WSOUND;
     }
   else{
@@ -114,18 +114,19 @@ void initSTATE(){
 //verification pour passage en mode presence
 int is_present(){
   if( Serial.available() ){
-    String data = "0";
-    data = Serial.readStringUntil('\n');
+    String data = Serial.readStringUntil('\n');
+    Serial.end();
+    Serial.begin(9600);
     while(Serial.available()){Serial.read();} //flush serial buffer
     if(data.equals("1\n") || data.equals("1") || data == 1){ return 1; }
-    else{ return 0; }
   }
+  return 0;
 }
 
 //envoi des données d'alerte de son pour les logs
 void message(E_STATE state, unsigned long wtime){
-  Serial.print("Warning type: ");
-  Serial.print(state);
+  if(state==1) {Serial.print("Warning type: SON");}
+  else {Serial.print("Warning type: PRESENCE");}
   Serial.print(" ; Warning time: ");
   Serial.print(wtime);
   Serial.print(" ms\n");
